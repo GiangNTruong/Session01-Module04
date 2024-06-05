@@ -49,7 +49,10 @@
             </tr>
             <tr>
                 <td>Avatar: </td>
-                <td><input name="imageFile" type="file"> </td>
+                <td><input name="imageFile" type="file"  id="imageFile">
+                    <img src="" alt="" id="imageView">
+                </td>
+
             </tr>
             <tr>
                 <td></td>
@@ -62,6 +65,15 @@
 
     </form>
 </div>
+<script>
+    const imageFile = document.getElementById("imageFile");
+    const imageView = document.getElementById("imageView");
+    imageFile.addEventListener("change",function (e){
+        if (e.target.files){
+            imageView.src = URL.createObjectURL(e.target.files[0]);
+        }
+    })
+</script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
