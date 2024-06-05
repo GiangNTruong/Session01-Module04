@@ -64,7 +64,11 @@ public class EmployeeController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateEmployee(@ModelAttribute Employee employee,@PathVariable Integer id, Model model){
+    public String updateEmployee(@ModelAttribute Employee employee,@RequestParam MultipartFile imageFile,@PathVariable Integer id, Model model){
+        if(imageFile!=null && !imageFile.isEmpty()){
+            String imageUrl = uploadFile.uploadToLocal(imageFile);
+            employee.setAvatar(imageUrl);
+        }
             employee.setEmpId(id);
         List<Department> listDepartment = departmentService.findAll();
         model.addAttribute("listDe",listDepartment);
